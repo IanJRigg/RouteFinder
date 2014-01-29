@@ -4,7 +4,7 @@ public class City {
 	private HashMap<City, NodeWrapper> destinations;
 	private String cityName;
 	
-	public City(String name){
+	public City(String name, float latitude, float longitude){
 		destinations = new HashMap<City, NodeWrapper>();
 		cityName = name;
 	}
