@@ -1,19 +1,27 @@
 import java.util.HashMap; 
+import java.util.Iterator;
 
-public class City {
-	private HashMap<City, NodeWrapper> destinations;
-	private String cityName;
+public class City implements Comparable<City>{
+	private HashMap<City, CityWrapper> destinations;
+	private final String name;
+	private float lat;
+	private float lon;
 	
-	public City(String name, float latitude, float longitude){
-		destinations = new HashMap<City, NodeWrapper>();
-		cityName = name;
+	public City(String cityName, float latitude, float longitude){
+		destinations = new HashMap<City, CityWrapper>();
+		name = cityName;
+		lat = latitude;
+		lon = longitude;
 	}
 	public void addCity(City city, int distance, String interstate){
-		NodeWrapper tempWrap = new NodeWrapper(interstate, distance);
+		CityWrapper tempWrap = new CityWrapper(interstate, distance);
 		this.destinations.put(city, tempWrap);
 	}
-	public HashMap<City, NodeWrapper> getDestinations(){
-		return this.destinations;
+	public Iterator<City> destIt(){
+		return destinations.keySet().iterator();
+	}
+	public int numDest(){
+		return destinations.size();
 	}
 	public int getDistance(City city){
 		if(this.destinations.containsKey(city) == false)
@@ -21,13 +29,22 @@ public class City {
 		return this.destinations.get(city).getDistance();
 	}
 	public String getName(){
-		return this.cityName;
+		return this.name;
 	}
-	class NodeWrapper{
+	public float getLat(){
+		return lat;
+	}
+	public float getLon(){
+		return lon;
+	}
+	public int compareTo(City city){
+		return city.getName().compareTo(getName());
+	}
+	class CityWrapper{
 		private String interstate;
 		private int distance;
 		
-		public NodeWrapper(String inters, int dist){
+		public CityWrapper(String inters, int dist){
 			interstate = inters;
 			distance = dist;
 		}

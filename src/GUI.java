@@ -1,6 +1,10 @@
 public class GUI {
-	public static void main(String[] args) {
-
+	
+	public GUI(){
+		
 	}
-
+	public void createGUI(){
+		RouteMapper mapper = new RouteMapper();
+		System.out.println(mapper.findRoute().toString());
+	}
 }
