@@ -5,6 +5,6 @@ public class GUI {
 	}
 	public void createGUI(){
 		RouteMapper mapper = new RouteMapper();
-		System.out.println(mapper.findRoute().toString());
+		mapper.test();
 	}
 }
