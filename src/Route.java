@@ -3,11 +3,15 @@ import java.util.Stack;
 
 public class Route implements Comparable<Route>{
 	private Stack<City> route;
+	private int distance;
 	
 	public Route(){
 		route = new Stack<City>();
+		distance = 0;
 	}
 	public void addCity(City nextCity){
+		if(route.size() > 0)
+			distance += nextCity.getDistance(route.peek());
 		route.push(nextCity);
 	}
 	public int addTotalDistance(){
@@ -23,25 +27,34 @@ public class Route implements Comparable<Route>{
 		}
 		return distance;	
 	}
+	public boolean contains(City city){
+		return route.contains(city);
+	}
+	public int getDistance(){
+		return distance;
+	}
+	public void setDistance(){
+		distance = 100000;
+	}
 	public int compareTo(Route r){
-		return 0;
+		return addTotalDistance() - r.addTotalDistance();
 	}
 	public String toString(){
-		Iterator<City> it = route.iterator();
+		if(distance == 0)
+			return route.toString();
+		Object[] tempRoute = route.toArray();
 		StringBuilder sb = new StringBuilder();
-		while(it.hasNext())
-			sb.append(it.next().getName() + "\n");
+		sb.append("Starting at: " + tempRoute[0].toString() + "\n");
+		for(int i = 1; i < route.size() - 1; i++){
+			sb.append("Take: " + ((City) tempRoute[i]).getInterstate((City)tempRoute[i + 1]) + " To: " + tempRoute[i].toString() + " " + ((City) tempRoute[i]).getDistance((City)tempRoute[i + 1]) + " Miles\n");
+		}
+		sb.append("Arrive at: " + tempRoute[tempRoute.length - 1].toString() +  "\nTotal Distance: " + getDistance() + " Miles");
 		return sb.toString();
 	}
 	public void makeEmpty(){
 		route.removeAllElements();
 	}
-	public boolean wasVisited(City nextCity){
-		Iterator<City> it = route.iterator();
-		while(it.hasNext()){
-			if(nextCity.compareTo(it.next()) == 0)
-				return true;
-		}
-		return false;
+	public boolean isEmpty(){
+		return route.isEmpty();
 	}
 }

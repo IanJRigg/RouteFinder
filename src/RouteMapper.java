@@ -5,66 +5,96 @@ import java.util.ArrayList;
 
 public class RouteMapper {
 	private final double RADIUS;
-	private HashMap <String, City> cities;
-	private Route[] routes;
+	private HashMap <String, City> cityTable;
 	
 	public RouteMapper(){
 		RADIUS = 3959;
 		MapMaker map = new MapMaker();
-		cities = map.makeGraph();
+		cityTable = map.makeGraph();
 	}
-	public void test(){
-		for(int i = 0; i < 100; i++){
-			System.out.println(findRoute(cities.get("San Diego"), cities.get("San Francisco")).toString());
-		}
+	public String test(){
+			return createRouteList(cityTable.get("San Diego"), cityTable.get("New York")).toString();
 	}
-	public Route[] createRouteList(City source, City destination){
-		Route[] routeList = new Route[3];
+	public Route createRouteList(City source, City destination){
+		// Take a route and rate it against the others in the array
+		// if the route is shorter than the first move the others
+		Route routes = new Route();
 		Route tempRoute = new Route();
-		for(int i = 0; i < 100; i++){
+		Route best;
+		int limit = (int)(haversine(source, destination) / 100);
+		do{
+			best = findRoute(source, destination);
+		}while(best.getDistance() == 100000);
+		for(int i = 0; i < limit; i++){
 			tempRoute = findRoute(source, destination);
-			
-		}
-		return insertionSort(routeList);
-	}
-	public Route findRoute(City source, City destination){
-		int distance = 0;
-		int farthest = (int)(1.50 * Math.ceil(haversine(source, destination)));
-		City currentCity = source;
-		City nextCity;
-		City prevCity = null;
-		Route cities = new Route();
-		cities.addCity(source);
-		while(true){
-			nextCity = searchCities(currentCity, destination, cities);
-			/*System.out.println("Cities: " + cities.toString());
-			System.out.println("NextCity: " + nextCity.getName());
-			System.out.println(distance);*/
-			distance += currentCity.getDistance(nextCity);
-			cities.addCity(nextCity);
-			if(nextCity.compareTo(destination) == 0)
-				return cities;
-			currentCity = nextCity;
-			if(distance > farthest){
-				cities.makeEmpty();
-				break;
+			if(tempRoute.getDistance() == 100000){
+				--i;
+				continue;
+			}
+			if(i < 2 || best.getDistance() > tempRoute.getDistance()){
+				System.out.println("New Best route: " + tempRoute.toString());
+				best = tempRoute;
 			}
 		}
+		System.out.println("Route: " + best.toString());
+		return best;		
+		//return insertionSort(routeList);
+	}	
+	public Route findRoute(City source, City destination){
+		/*
+		 * start at one city, choose a non visited destination at random
+		 * add the city to the route
+		 * 		When choosing a random city to add to the cities route, 
+		 * 		haversine the city in question to the destination.
+		 * 		If the city is closer to the destination than the previous city,
+		 * 		add the city to the array of cities to be randomly chosen.
+		 * mark all of the destinations as visited 
+		 */
+		int farthest = (int)(1.50 * Math.ceil(haversine(source, destination)));
+		City currentCity = source;
+		City nextCity, prevCity;
+		Route cities = new Route();
+		cities.addCity(source);
+		prevCity = null;
+		while(cities.getDistance() < farthest){
+			nextCity = searchCities(currentCity, destination, prevCity);
+			if(nextCity == null)
+				break;
+			cities.addCity(nextCity);
+			prevCity = currentCity;
+			currentCity = nextCity;
+			if(currentCity.compareTo(destination) == 0){
+				return cities;
+			}
+		}
+		cities.setDistance();
 		return cities;
 	}
-	public City searchCities(City source, City destination, Route currentRoute){
-		Iterator<City> it = source.destIt();
+	public City searchCities(City currentCity, City destination, City prevCity){
+		Iterator<City> it = currentCity.destIt();
+		int cityCounter = 0;
 		City temp;
-		ArrayList <City >destinations = new ArrayList<City>(); 
+		ArrayList <City> destinations = new ArrayList<City>(); 
 		while(it.hasNext()){
 			temp = it.next();
 			if(temp.compareTo(destination) == 0)
 				return destination;
+			if(prevCity != null && temp.compareTo(prevCity) == 0)
+				continue;
+			if(haversine(temp, destination) > haversine(currentCity, destination) + 50)
+				// If the city isn't closer or close to the currentcity, don't consider it
+				continue;
+			if((temp.numDest() == 1 && temp.destIt().next().compareTo(destination) != 0))
+				/* If there is a city with only one destination and that destination is not the 
+					destinationt that is currently being searched for, just continue
+				*/
+				continue;
 			destinations.add(temp);
+			cityCounter++;
 		}
-		do{
-			temp = destinations.get((int)(Math.random() * destinations.size()));
-		}while(currentRoute.wasVisited(temp));
+		if(cityCounter == 0)
+			return null;
+		temp = destinations.get((int)(Math.random() * cityCounter));
 		return temp;
 	}
 	public Route[] insertionSort(Route[] routes){

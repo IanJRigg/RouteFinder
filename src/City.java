@@ -23,12 +23,20 @@ public class City implements Comparable<City>{
 	public int numDest(){
 		return destinations.size();
 	}
+	public String getInterstate(City city){
+		if(this.destinations.containsKey(city) == false)
+			return null;
+		return this.destinations.get(city).getInterstate();
+	}
 	public int getDistance(City city){
 		if(this.destinations.containsKey(city) == false)
 			return 0;
 		return this.destinations.get(city).getDistance();
 	}
 	public String getName(){
+		return this.name;
+	}
+	public String toString(){
 		return this.name;
 	}
 	public float getLat(){
@@ -38,7 +46,13 @@ public class City implements Comparable<City>{
 		return lon;
 	}
 	public int compareTo(City city){
-		return city.getName().compareTo(getName());
+		// if non zero answer is returned, the cities are not the same
+		float dLat = city.getLat() - getLat();
+		float dLon = city.getLon() - getLon();
+		if(dLat == 0 && dLon == 0)
+			return 0;
+		return 1;
+		//return (int)((city.getLat() - getLat()) + (city.getLon() - getLon()));
 	}
 	class CityWrapper{
 		private String interstate;

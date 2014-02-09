@@ -399,7 +399,7 @@ public class MapMaker {
 		albertLea.addCity(minneapolis, 98, "I-35N to I-35W");
 		albertLea.addCity(tomah, 162, "I-90E");
 		
-		albuquerque.addCity(denver, 445, "Interstate 25");
+		albuquerque.addCity(denver, 445, "I-25N");
 		albuquerque.addCity(flagstaff, 324, "I-40W");
 		albuquerque.addCity(lasCruces, 226, "I-25S");
 		albuquerque.addCity(amarillo, 285, "I-40E");
@@ -447,9 +447,9 @@ public class MapMaker {
 		baltimore.addCity(harrisburg, 79, "I-83N");
 		baltimore.addCity(philadelphia, 98, "I-95N");
 		
-		barstow.addCity(lasVegas, 152 , "Interstate 15");
-		barstow.addCity(sanBernardino, 71 , "Interstate 15 to Interstate 215");
-		barstow.addCity(flagstaff, 355, "Interstate 40");
+		barstow.addCity(lasVegas, 152 , "I-15N");
+		barstow.addCity(sanBernardino, 71 , "I-15S to I-215S");
+		barstow.addCity(flagstaff, 355, "I-40E");
 		
 		batonRouge.addCity(lafayette, 59, "I-10W");
 		batonRouge.addCity(newOrleans, 80, "I-10E");
@@ -498,9 +498,9 @@ public class MapMaker {
 		bloomington.addCity(chicago, 134, "I-55N");
 		bloomington.addCity(lasalle, 63, "I-39N");
 		
-		boise.addCity(portland, 430, "Interstate 84");
-		boise.addCity(saltLakeCity, 345, "Interstate 84");
-		boise.addCity(pocatello, 238, "Interstate 86 to Interstate 84");
+		boise.addCity(portland, 430, "I-84W");
+		boise.addCity(saltLakeCity, 345, "I-84E");
+		boise.addCity(pocatello, 238, "I-84E to I-86E");
 		
 		boston.addCity(providence, 50, "I-93S to I-95S");
 		boston.addCity(auburn, 44, "I-90W");
@@ -527,8 +527,8 @@ public class MapMaker {
 		buffaloW.addCity(cheyenne, 289, "I-25S");
 		buffaloW.addCity(rapidCity, 210, "1-90E");
 		
-		butte.addCity(spokane, 315, "Interstate 90");
-		butte.addCity(pocatello, 255, "Interstate 15");
+		butte.addCity(spokane, 315, "I-90W");
+		butte.addCity(pocatello, 255, "I-15S");
 		butte.addCity(billings, 226, "I-90E");
 		
 		cambridge.addCity(columbus, 80, "I-70W");
@@ -559,8 +559,8 @@ public class MapMaker {
 		chattanooga.addCity(nashville, 134, "I-24W");
 		chattanooga.addCity(knoxville, 112, "I-75N");
 		
-		cheyenne.addCity(saltLakeCity, 440, "Interstate 80");
-		cheyenne.addCity(denver, 101, "Interstate 25");
+		cheyenne.addCity(saltLakeCity, 440, "I-80W");
+		cheyenne.addCity(denver, 101, "I-25S");
 		cheyenne.addCity(buffaloW, 289, "I-25N");
 		cheyenne.addCity(lincoln, 444, "I-80E");
 		
@@ -630,8 +630,8 @@ public class MapMaker {
 		daytonaBeach.addCity(jacksonville, 100, "I-95N");
 		daytonaBeach.addCity(orlando, 49, "I-4W");
 		
-		denver.addCity(cheyenne, 101, "Interstate 25");
-		denver.addCity(albuquerque, 445, "Interstate 25");
+		denver.addCity(cheyenne, 101, "I-25N");
+		denver.addCity(albuquerque, 445, "I-25S");
 		denver.addCity(lasVegas, 752, "I-15N to I-70E");
 		denver.addCity(salina, 434, "I-70E");
 		denver.addCity(lincoln, 488, "I-76E to I-80E");
@@ -670,9 +670,9 @@ public class MapMaker {
 		fargo.addCity(bismarck, 196, "I-94W");
 		fargo.addCity(minneapolis, 235, "I-94E");
 		
-		flagstaff.addCity(barstow, 355, "Interstate 40");
-		flagstaff.addCity(phoenix, 147, "Interstate 17");
-		flagstaff.addCity(albuquerque, 324, "Interstate 40");
+		flagstaff.addCity(barstow, 355, "I-40W");
+		flagstaff.addCity(phoenix, 147, "I-17S");
+		flagstaff.addCity(albuquerque, 324, "I-40E");
 		
 		flint.addCity(lansing, 56, "I-69W");
 		flint.addCity(detroit, 68, "I-75S");
@@ -821,8 +821,8 @@ public class MapMaker {
 		lasCruces.addCity(elPaso, 46, "I-10W");
 		
 		lasVegas.addCity(barstow, 152, "I-15S");
-		lasVegas.addCity(saltLakeCity, 424, "Interstate 15");
-		lasVegas.addCity(denver, 752, "Interstate 15 to Interstate 70");
+		lasVegas.addCity(saltLakeCity, 424, "I-15N");
+		lasVegas.addCity(denver, 752, "I-15N to I-70E");
 		
 		lebanon.addCity(concord, 74, "I-89S");
 		lebanon.addCity(springfieldMA, 121, "I-91S");
@@ -845,9 +845,9 @@ public class MapMaker {
 		littleRock.addCity(oklahomaCity, 339, "I-40W");
 		littleRock.addCity(memphis, 137, "I-40E");
 		
-		losAngeles.addCity(sanBernardino, 60, "Interstate 10");
-		losAngeles.addCity(sanDiego, 121, "Interstate 5");
-		losAngeles.addCity(sacramento, 384, "Interstate 5");
+		losAngeles.addCity(sanBernardino, 60, "I-10E");
+		losAngeles.addCity(sanDiego, 121, "I-5S");
+		losAngeles.addCity(sacramento, 384, "I-5N");
 		
 		louisville.addCity(indianapolis, 114, "I-65N");
 		louisville.addCity(nashville, 174, "I-65S");
@@ -971,22 +971,22 @@ public class MapMaker {
 		philadelphia.addCity(newYork, 96, "I-95N");
 		philadelphia.addCity(allentown, 55, "I-476N");
 		
-		phoenix.addCity(sanBernardino, 321, "Interstate 10");
-		phoenix.addCity(flagstaff, 147, "Interstate 17");
-		phoenix.addCity(tucson, 116, "Interstate 10");
+		phoenix.addCity(sanBernardino, 321, "I-10W");
+		phoenix.addCity(flagstaff, 147, "I-17N");
+		phoenix.addCity(tucson, 116, "I-10E");
 		
 		pittsburgh.addCity(washington, 30, "I-79S");
 		pittsburgh.addCity(northJackson, 74, "I-76W");
 		pittsburgh.addCity(mercer, 57, "I-79N");
 		pittsburgh.addCity(newStanton, 33, "I-376E to I-76E");
 		
-		pocatello.addCity(butte, 255, "Interstate 15");
-		pocatello.addCity(boise, 238, "Interstate 84 to Interstate 86");
-		pocatello.addCity(saltLakeCity, 165, "Interstate 15");
+		pocatello.addCity(butte, 255, "I-15N");
+		pocatello.addCity(boise, 238, "I-86W to I-84W");
+		pocatello.addCity(saltLakeCity, 165, "I-15S");
 		
-		portland.addCity(sacramento, 580, "Interstate 5");
-		portland.addCity(seattle, 173, "Interstate 5");
-		portland.addCity(boise, 430, "Interstate 84");
+		portland.addCity(sacramento, 580, "I-5S");
+		portland.addCity(seattle, 173, "I-5N");
+		portland.addCity(boise, 430, "I-84E");
 		
 		portlandME.addCity(boston, 108, "I-95S");
 		portlandME.addCity(augustaME, 53, "I-295N");
@@ -1006,8 +1006,8 @@ public class MapMaker {
 		rapidCity.addCity(buffaloW, 210, "I-90W");
 		rapidCity.addCity(siouxFalls, 348, "I-90E");
 		
-		reno.addCity(saltLakeCity, 518, "Interstate 80");
-		reno.addCity(sacramento, 132, "Interstate 80");
+		reno.addCity(saltLakeCity, 518, "I-80E");
+		reno.addCity(sacramento, 132, "I-80W");
 		
 		richmond.addCity(benson, 175, "I-95S");
 		richmond.addCity(raleigh, 157, "I-85S");
@@ -1023,34 +1023,34 @@ public class MapMaker {
 		rockford.addCity(chicago, 78, "I-90E");
 		rockford.addCity(madison, 68, "I-39N/I-90W");
 		
-		sacramento.addCity(losAngeles, 384, "Interstate 5");
-		sacramento.addCity(portland, 580, "Interstate 5");
-		sacramento.addCity(reno, 132, "Interstate 80");
+		sacramento.addCity(losAngeles, 384, "I-5S");
+		sacramento.addCity(portland, 580, "I-5N");
+		sacramento.addCity(reno, 132, "I-80E");
 		sacramento.addCity(sanFrancisco, 87, "I-80W");
 		
 		salina.addCity(denver, 434, "I-70W");
 		salina.addCity(wichita, 89, "I-135S");
 		salina.addCity(topeka, 111, "I-70E");
 		
-		saltLakeCity.addCity(lasVegas, 424, "Interstate 15");
-		saltLakeCity.addCity(reno, 518, "Interstate 80");
-		saltLakeCity.addCity(cheyenne, 440, "Interstate 80");
-		saltLakeCity.addCity(boise, 345, "Interstate 84");
-		saltLakeCity.addCity(pocatello, 165, "Interstate 15");
+		saltLakeCity.addCity(lasVegas, 424, "I-15S");
+		saltLakeCity.addCity(reno, 518, "I-80W");
+		saltLakeCity.addCity(cheyenne, 440, "I-80E");
+		saltLakeCity.addCity(boise, 345, "I-84W");
+		saltLakeCity.addCity(pocatello, 165, "I-15N");
 		
 		sanAntonio.addCity(kent, 384, "I-10W");
 		sanAntonio.addCity(austin, 80, "I-35N");
 		sanAntonio.addCity(corpusChristi, 143, "I-37N");
 		sanAntonio.addCity(houston, 197, "I-10E");
 		
-		sanBernardino.addCity(losAngeles, 60, "Interstate 10");
-		sanBernardino.addCity(sanDiego, 107, "Interstate 215 to Interstate 15");
-		sanBernardino.addCity(barstow, 71, "Interstate 215 to Interstate 15");
-		sanBernardino.addCity(phoenix, 321, "Interstate 10");
+		sanBernardino.addCity(losAngeles, 60, "I-10E");
+		sanBernardino.addCity(sanDiego, 107, "I-215S to I-15S");
+		sanBernardino.addCity(barstow, 71, "I-215N to I-15N");
+		sanBernardino.addCity(phoenix, 321, "I-10E");
 		
-		sanDiego.addCity(losAngeles, 121, "Interstate 5");
-		sanDiego.addCity(sanBernardino, 107, "Interstate 15 to Interstate 215");
-		sanDiego.addCity(tucson, 410, "Interstate 8 to Interstate 10");
+		sanDiego.addCity(losAngeles, 121, "I-5N");
+		sanDiego.addCity(sanBernardino, 107, "I-15N to I-215N");
+		sanDiego.addCity(tucson, 410, "I-8E to I-10E");
 		
 		sanFrancisco.addCity(sacramento, 87, "I-80E");
 		
@@ -1063,8 +1063,8 @@ public class MapMaker {
 		scranton.addCity(hazleton, 36, "I-81S");
 		scranton.addCity(hickoryRun, 32, "I-81S to I-476S");
 		
-		seattle.addCity(portland, 173, "Interstate 5");
-		seattle.addCity(spokane, 279, "Interstate 90");
+		seattle.addCity(portland, 173, "I-5S");
+		seattle.addCity(spokane, 279, "I-90E");
 		
 		seville.addCity(columbus, 103, "I-71S");
 		seville.addCity(akron, 24, "I-76E");
@@ -1100,8 +1100,8 @@ public class MapMaker {
 		spartanburg.addCity(asheville, 63, "I-26W");
 		spartanburg.addCity(charlotte, 75, "I-85N");
 		
-		spokane.addCity(seattle, 279, "Interstate 90" );
-		spokane.addCity(butte, 315, "Interstate 90");
+		spokane.addCity(seattle, 279, "I-90W" );
+		spokane.addCity(butte, 315, "I-90E");
 		
 		springfieldMO.addCity(tulsa, 181, "I-44W");
 		springfieldMO.addCity(stLouis, 216, "I-44E");
@@ -1173,8 +1173,8 @@ public class MapMaker {
 		topeka.addCity(salina, 111, "I-70W");
 		topeka.addCity(kansasCity, 60, "I-70E");
 		
-		tucson.addCity(phoenix, 116, "Interstate 10");
-		tucson.addCity(sanDiego, 410, "Interstate 10 to Interstate 8");
+		tucson.addCity(phoenix, 116, "I-10W");
+		tucson.addCity(sanDiego, 410, "I-10W to I-8W");
 		tucson.addCity(lasCruces, 274, "I-10E");
 		
 		tulsa.addCity(oklahomaCity, 107, "I-44W");
