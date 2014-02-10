@@ -14,19 +14,6 @@ public class Route implements Comparable<Route>{
 			distance += nextCity.getDistance(route.peek());
 		route.push(nextCity);
 	}
-	public int addTotalDistance(){
-		int distance = 0;
-		if(route.size() <= 1)
-			return distance;
-		City destination = route.pop();
-		City source = route.pop();
-		while(!route.isEmpty()){
-			distance += source.getDistance(destination);
-			destination = source;
-			source = route.pop();
-		}
-		return distance;	
-	}
 	public boolean contains(City city){
 		return route.contains(city);
 	}
@@ -37,7 +24,7 @@ public class Route implements Comparable<Route>{
 		distance = 100000;
 	}
 	public int compareTo(Route r){
-		return addTotalDistance() - r.addTotalDistance();
+		return distance - r.getDistance();
 	}
 	public String toString(){
 		if(distance == 0)
@@ -46,7 +33,7 @@ public class Route implements Comparable<Route>{
 		StringBuilder sb = new StringBuilder();
 		sb.append("Starting at: " + tempRoute[0].toString() + "\n");
 		for(int i = 1; i < route.size() - 1; i++){
-			sb.append("Take: " + ((City) tempRoute[i]).getInterstate((City)tempRoute[i + 1]) + " To: " + tempRoute[i].toString() + " " + ((City) tempRoute[i]).getDistance((City)tempRoute[i + 1]) + " Miles\n");
+			sb.append("Take:" + ((City) tempRoute[i]).getInterstate((City)tempRoute[i + 1]) + " To: " + tempRoute[i].toString() + " " + ((City) tempRoute[i]).getDistance((City)tempRoute[i + 1]) + " Miles\n\n");
 		}
 		sb.append("Arrive at: " + tempRoute[tempRoute.length - 1].toString() +  "\nTotal Distance: " + getDistance() + " Miles");
 		return sb.toString();

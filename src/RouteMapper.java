@@ -5,20 +5,15 @@ import java.util.ArrayList;
 
 public class RouteMapper {
 	private final double RADIUS;
-	private HashMap <String, City> cityTable;
 	
 	public RouteMapper(){
 		RADIUS = 3959;
 		MapMaker map = new MapMaker();
-		cityTable = map.makeGraph();
 	}
-	public String test(){
-			return createRouteList(cityTable.get("San Diego"), cityTable.get("New York")).toString();
-	}
-	public Route createRouteList(City source, City destination){
-		// Take a route and rate it against the others in the array
-		// if the route is shorter than the first move the others
-		Route routes = new Route();
+	public Route[] createRouteList(City source, City destination){
+		if(source.compareTo(destination) == 0)
+			return new Route[3];
+		Route[] routes = new Route[3];
 		Route tempRoute = new Route();
 		Route best;
 		int limit = (int)(haversine(source, destination) / 100);
@@ -31,26 +26,13 @@ public class RouteMapper {
 				--i;
 				continue;
 			}
-			if(i < 2 || best.getDistance() > tempRoute.getDistance()){
-				System.out.println("New Best route: " + tempRoute.toString());
-				best = tempRoute;
-			}
+			routes = processRoute(routes, tempRoute);
 		}
-		System.out.println("Route: " + best.toString());
-		return best;		
+		return routes;		
 		//return insertionSort(routeList);
 	}	
 	public Route findRoute(City source, City destination){
-		/*
-		 * start at one city, choose a non visited destination at random
-		 * add the city to the route
-		 * 		When choosing a random city to add to the cities route, 
-		 * 		haversine the city in question to the destination.
-		 * 		If the city is closer to the destination than the previous city,
-		 * 		add the city to the array of cities to be randomly chosen.
-		 * mark all of the destinations as visited 
-		 */
-		int farthest = (int)(1.50 * Math.ceil(haversine(source, destination)));
+		int farthest = (int)(1.25 * Math.ceil(haversine(source, destination)));
 		City currentCity = source;
 		City nextCity, prevCity;
 		Route cities = new Route();
@@ -85,9 +67,6 @@ public class RouteMapper {
 				// If the city isn't closer or close to the currentcity, don't consider it
 				continue;
 			if((temp.numDest() == 1 && temp.destIt().next().compareTo(destination) != 0))
-				/* If there is a city with only one destination and that destination is not the 
-					destinationt that is currently being searched for, just continue
-				*/
 				continue;
 			destinations.add(temp);
 			cityCounter++;
@@ -97,21 +76,54 @@ public class RouteMapper {
 		temp = destinations.get((int)(Math.random() * cityCounter));
 		return temp;
 	}
-	public Route[] insertionSort(Route[] routes){
-		int index, value, j;
-		index = routes.length;
-		Route temp;
-		for(int i = 1; i < routes.length; i++){
-		    value = routes[i].addTotalDistance();
-		    j = i - 1;
-		    temp = routes[i];
-		    while(j >= 0 && routes[j].addTotalDistance() > value){
-		      routes[j + 1] = routes[j];
-		      j = j - 1;
-		    }
-		    routes[j + 1] = temp;
-		  }
-		return routes;
+	public Route[] processRoute(Route[] routes, Route currentRoute){
+		for(int i = 0; i < 3; i++){
+			if(routes[i] == null)
+				break;
+			if(currentRoute.compareTo(routes[i]) == 0)
+				return routes;
+		}
+		if(routes[0] == null){
+			routes[0] = currentRoute;
+			return routes;
+		}	
+		else if(routes[1] == null){
+			if(routes[0].getDistance() > currentRoute.getDistance()){
+				routes[1] = routes[0];
+				routes[0] = currentRoute;
+			}
+			else
+				routes[1] = currentRoute;
+			return routes;
+		}
+		else if(routes[2] == null){
+			if(routes[1].getDistance() < currentRoute.getDistance())
+				routes[2] = currentRoute;
+			else if(routes[0].getDistance() < currentRoute.getDistance()){
+				routes[2] = routes[1];
+				routes[1] = currentRoute;
+			}
+			else{
+				routes[2] = routes[1];
+				routes[1] = routes[0];
+				routes[0] = currentRoute;
+			}
+			return routes;
+		}
+		else{
+			if(routes[1].getDistance() < currentRoute.getDistance())
+				routes[2] = currentRoute;
+			else if(routes[0].getDistance() < currentRoute.getDistance()){
+				routes[2] = routes[1];
+				routes[1] = currentRoute;
+			}
+			else{
+				routes[2] = routes[1];
+				routes[1] = routes[0];
+				routes[0] = currentRoute;
+			}
+			return routes;
+		}
 	}
 	public double haversine(City source, City destination){
 		double deltaLat = Math.toRadians(destination.getLat() - source.getLat());
